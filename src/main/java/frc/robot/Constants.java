@@ -5,9 +5,6 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
-import com.revrobotics.spark.SparkBase.PersistMode;
-import com.revrobotics.spark.SparkBase.ResetMode;
-import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 //import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
 //import com.pathplanner.lib.util.PIDConstants;
@@ -24,12 +21,22 @@ import static frc.lib.util.COTSTalonFXSwerveConstants.SDS.MK4i.*;
 
 public final class Constants {
     public static final double CONTROLLER_DEADBAND = 0.1;
+    public static final String LimelightName = "limelight";
 
-   
+
+
+   public final class ShooterConstants {
+
+    public static final int FlywheelMotor1ID = 0;
+    public static final int FlywheelMotor2ID = 0;
+    public static final double MotorSpeed = 0;
+
+   }
 
     public static final class Swerve {
 
         public static final boolean INVERT_GYRO = true;
+        public static final int GyroId = 0;
         public static final COTSTalonFXSwerveConstants FALCON_500_CONSTANTS = Falcon500(driveRatios.L2);
 
         /**
@@ -155,7 +162,7 @@ public final class Constants {
         public static final PPHolonomicDriveController PATHPLANNER_FOLLOWER_CONFIG = new PPHolonomicDriveController(
                 new PIDConstants(5, 0, 0), 
                 new PIDConstants(3, 0, 0)
-                // MAX_SPEED,
+                // MAX_SPEED,=
                 // DRIVEBASE_RADIUS,
                 // new ReplanningConfig()
                 );
@@ -187,5 +194,30 @@ public final class Constants {
         // =
         // new TrapezoidProfile.Constraints(
         // kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
+        
+    }
+
+    public static final class IntakeArmConstants {
+        public static final int MOTORID = 1;
+        public static final double TICK_TO_DEG_RATIO = 1;
+        public static final double kP = 0;
+        public static final double kD = 0;
+        public static final double kI = 0;
+        public static final double tolerance = 3;
+    }
+    
+    
+    public static final class intakeConstants{
+            public static final int rollerID = 0;
+        }
+    public static final class HoodConstants{
+        //subsystem constants
+        public static final int HoodID = 0;
+        public static final double tickToDegRatio = 0;
+        //command constants
+        public static final double kP = 0;
+        public static final double kI = 0;
+        public static final double kD = 0;
+        public static final double tolerance = 3;
     }
 }
