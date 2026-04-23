@@ -6,11 +6,13 @@ import com.ctre.phoenix6.signals.SensorDirectionValue;
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 
+import edu.wpi.first.math.geometry.Pose2d;
 //import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
 //import com.pathplanner.lib.util.PIDConstants;
 // import com.pathplanner.lib.util.ReplanningConfig;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.util.Units;
 import frc.lib.util.COTSTalonFXSwerveConstants;
@@ -19,21 +21,33 @@ import frc.lib.util.SwerveModuleConstants;
 
 import static frc.lib.util.COTSTalonFXSwerveConstants.SDS.MK4i.*;
 
+import java.util.function.BooleanSupplier;
+
 public final class Constants {
     public static final double CONTROLLER_DEADBAND = 0.1;
     public static final String LimelightName = "limelight";
+    public static final int ringLimitSwitchID = 0;
 
 
 
    public final class ShooterConstants {
 
-    public static final int FlywheelMotor1ID = 0;
-    public static final int FlywheelMotor2ID = 0;
-    public static final double MotorSpeed = 0;
+    public static final int FlywheelMotor1ID = 17;
+    public static final int FlywheelMotor2ID = 16;
+    public static final double MotorSpeed = -.5;
 
    }
 
     public static final class Swerve {
+
+        public static Pose2d Robotpose = new Pose2d();
+        public static ChassisSpeeds speeds = new ChassisSpeeds();
+        
+        
+        
+        public static final double LIMELIGHT_TURRET_POSE_Y = -0.238;
+        public static final double LIMELIGHT_TURRET_POSE_X = -0.087;
+        public static BooleanSupplier good = ()-> false;
 
         public static final boolean INVERT_GYRO = true;
         public static final int GyroId = 0;
@@ -125,7 +139,7 @@ public final class Constants {
             public static final int driveMotorID = 1;
             public static final int angleMotorID = 2;
             public static final int canCoderID = 3;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(-177.178);
+            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(46.318359375); //-133.681640625
             public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID, angleMotorID,
                     canCoderID, angleOffset);
         }
@@ -135,7 +149,7 @@ public final class Constants {
             public static final int driveMotorID = 4;
             public static final int angleMotorID = 5;
             public static final int canCoderID = 6;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(-166.87);
+            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(-168.177734375);
             public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID, angleMotorID,
                     canCoderID, angleOffset);
         }
@@ -145,7 +159,7 @@ public final class Constants {
             public static final int driveMotorID = 7;
             public static final int angleMotorID = 8;
             public static final int canCoderID = 9;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(165.8407);
+            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(168.3984375); //-11.6015625
             public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID, angleMotorID,
                     canCoderID, angleOffset);
         }
@@ -155,7 +169,7 @@ public final class Constants {
             public static final int driveMotorID = 10;
             public static final int angleMotorID = 11;
             public static final int canCoderID = 12;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(127.798);
+            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(-22.587890625); //157.412109375
             public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID, angleMotorID,
                     canCoderID, angleOffset);
         }
@@ -167,6 +181,13 @@ public final class Constants {
                 // new ReplanningConfig()
                 );
 
+    }
+
+    public static final class limelightConstants {
+
+		public static final String limelightTurret = "limelight-duncan";        
+        public static final String limelightFront = "limelight-douglas";
+        public static final String limelightBack = "limelight-mega";
     }
 
     
@@ -198,26 +219,29 @@ public final class Constants {
     }
 
     public static final class IntakeArmConstants {
-        public static final int MOTORID = 1;
+        public static final int MOTORID = 13;
         public static final double TICK_TO_DEG_RATIO = 1;
-        public static final double kP = 0;
+        public static final double kP = 0.025;
         public static final double kD = 0;
         public static final double kI = 0;
-        public static final double tolerance = 3;
+        public static final double tolerance = 2;
+		public static final double OutAngle = -57.43994140625;
     }
     
     
     public static final class intakeConstants{
-            public static final int rollerID = 0;
+            public static final int rollerID = 14;
+            public static final double speed = .25;
         }
     public static final class HoodConstants{
         //subsystem constants
-        public static final int HoodID = 0;
+        public static final int HoodID = 15;
         public static final double tickToDegRatio = 0;
         //command constants
         public static final double kP = 0;
         public static final double kI = 0;
         public static final double kD = 0;
         public static final double tolerance = 3;
+        public static final double OutAngle = 0;
     }
 }

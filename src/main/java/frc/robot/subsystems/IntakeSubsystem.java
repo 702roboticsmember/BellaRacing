@@ -5,8 +5,11 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -19,7 +22,9 @@ public class IntakeSubsystem extends SubsystemBase {
     motor.set(speed);
     SmartDashboard.putNumber("IntakeSpeed", speed);
   } 
-  
+  // public Command coast() {
+  //   return Commands.runEnd(() -> motor.setNeutralMode(NeutralModeValue.Coast), () -> motor.setNeutralMode(NeutralModeValue.Brake), this);
+  // }
 
   @Override
   public void periodic() {
